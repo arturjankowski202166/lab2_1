@@ -21,14 +21,15 @@ public class Test {
 
     @org.junit.Test
     public void elementFoundSequenceLen1() {
-        SearchResult result = search(1,singleElement);
+        SearchResult result = search(singleElement[0],singleElement);
         assert (result.isFound());
         assert(result.getPosition()==0);
     }
 
     @org.junit.Test
     public void elementNotFoundSequenceLen1() {
-        SearchResult result = search(singleElement[0],singleElement);
+        SearchResult result = search(99,singleElement);
+        System.out.println(result);
         assert (!result.isFound());
         assert(result.getPosition()==-1);
     }
@@ -56,7 +57,7 @@ public class Test {
 
     @org.junit.Test
     public void elementNotFoundSequenceLenMoreThan1() {
-        SearchResult result = search (sequence[sequence.length-1],sequence);
+        SearchResult result = search (15,sequence);
         assert(!result.isFound());
         assert(result.getPosition()==-1);
     }
