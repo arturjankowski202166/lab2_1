@@ -28,70 +28,70 @@ public class Test {
 
     @org.junit.Test
     public void elementFoundSequenceLen1() {
-        SearchResult result = search(singleElement[0],singleElement);
+        SearchResult result = search(singleElement[0], singleElement);
         assertThat (result.isFound(), is(true));
         assertThat(result.getPosition(), is(0));
     }
 
     @org.junit.Test
     public void elementNotFoundSequenceLen1() {
-        SearchResult result = search(99,singleElement);
+        SearchResult result = search(singleElement.length + 1, singleElement);
         assertThat (result.isFound(), is(false));
         assertThat(result.getPosition(), is(-1));
     }
 
     @org.junit.Test
     public void elementFoundFirstSequence300() {
-        SearchResult result = search(sequence[0],sequence);
+        SearchResult result = search(sequence[0], bigSequence);
         assertThat (result.isFound(), is(true));
         assertThat(result.getPosition(), is(0));
     }
 
     @org.junit.Test
     public void elementFoundLastSequenceLen300() {
-        SearchResult result = search(sequence[sequence.length-1],sequence);
+        SearchResult result = search(sequence[sequence.length-1],bigSequence);
         assertThat (result.isFound(), is(true));
         assertThat(result.getPosition(), is(sequence.length - 1));
     }
 
     @org.junit.Test
     public void elementFoundMiddleSequenceLen300() {
-        SearchResult result = search(sequence[3],sequence);
+        SearchResult result = search(bigSequence[bigSequence.length / 2], bigSequence);
         assertThat (result.isFound(), is(true));
-        assertThat(result.getPosition(), is(3));
+        assertThat(result.getPosition(), is(bigSequence[bigSequence.length / 2] - 1));
     }
 
     @org.junit.Test
     public void elementNotFoundSequenceLen300() {
-        SearchResult result = search(15,sequence);
+        SearchResult result = search(bigSequence.length + 1, bigSequence);
         assertThat (result.isFound(), is(false));
         assertThat(result.getPosition(), is(-1));
     }
 
     @org.junit.Test
     public void elementFoundFirstSequence5() {
-        SearchResult result = search(sequence[0],sequence);
+        SearchResult result = search(sequence[0], sequence);
         assertThat (result.isFound(), is(true));
         assertThat(result.getPosition(), is(0));
     }
 
     @org.junit.Test
     public void elementFoundLastSequenceLen5() {
-        SearchResult result = search(sequence[sequence.length - 1],sequence);
+        SearchResult result = search(sequence[sequence.length - 1], sequence);
         assertThat (result.isFound(), is(true));
         assertThat(result.getPosition(), is(sequence.length - 1));
     }
 
     @org.junit.Test
     public void elementFoundMiddleSequenceLen5() {
-        SearchResult result = search(sequence[3],sequence);
+        SearchResult result = search(sequence[sequence.length / 2],sequence);
         assertThat (result.isFound(), is(true));
-        assertThat(result.getPosition(), is(3));
+        assertThat(result.getPosition(), is(sequence[sequence.length / 2] - 1));
     }
 
     @org.junit.Test
     public void elementNotFoundSequenceLen5() {
-        SearchResult result = search(15,sequence);
+        SearchResult result = search(sequence.length + 1, sequence);
         assertThat (result.isFound(), is(false));
         assertThat(result.getPosition(), is(-1));
     }
@@ -108,6 +108,6 @@ public class Test {
 
     @org.junit.Test (expected =  IllegalArgumentException.class)
     public void searchInEmptySequence(){
-        SearchResult result = search(4, empty);
+        SearchResult result = search(0, empty);
     }
 }
