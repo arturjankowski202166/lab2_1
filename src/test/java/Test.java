@@ -11,6 +11,7 @@ public class Test {
     private  int bigSequence[] = new int[300];
     private int singleElement[] = new int[1];
     private int empty[] = {};
+    private int smallSequence[] = new int[3];
 
     @Before
     public void initTest() {
@@ -21,6 +22,11 @@ public class Test {
         for (int i = 0; i < 300; i++)
         {
             bigSequence[i]=i+1;
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            smallSequence[i]=i+1;
         }
         singleElement[0]=1;
 
@@ -109,5 +115,12 @@ public class Test {
     @org.junit.Test (expected =  IllegalArgumentException.class)
     public void searchInEmptySequence(){
         SearchResult result = search(0, empty);
+    }
+
+    @org.junit.Test
+    public void searchInThreeElementSequenceAccuratelyInTheMiddleShouldReturnItem(){
+        SearchResult result = search(2, sequence);
+        assertThat (result.isFound(), is(true));
+        assertThat(result.getPosition(), is(1));
     }
 }
